@@ -479,6 +479,11 @@ qapi_enum_handler_registry qapi_enum_handler_registry_data = {
     [self qmpHmpCommand:cmd completion:completion];
 }
 
+- (void)qomSetPath:(NSString *)path property:(NSString *)property value:(NSString *)value withCompletion:(void (^)(NSString * _Nullable, NSError * _Nullable))completion {
+    NSString *cmd = [NSString stringWithFormat:@"qom-set %@ %@ %@", path, property, value];
+    [self qmpHmpCommand:cmd completion:completion];
+}
+
 - (void)sendKeysRaw:(NSArray<NSNumber *> *)keysRaw holdTime:(NSInteger)holdTime withCompletion:(void (^)(NSError * _Nullable))completion {
     KeyValue *v = NULL;
     KeyValueList *head = NULL, **tail = &head;
